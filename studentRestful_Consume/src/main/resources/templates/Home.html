@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ 
+<h1>Add Student</h1>
+<form th:action="@{/process}" th:object="${student}">
+	NAME: <input type="text" th:field="*{name}"><br>
+	GRADE: <input type="number" th:field="*{grade}"><br>
+	<input type="submit" value="Add Student">
+</form>
+
+<h1>View Students</h1>
+<table border=1>
+	<tr>
+		<th>ID</th>
+		<th>NAME</th>
+		<th>GRADE</th>
+		<th>LETTER GRADE</th>
+	</tr>
+	<tr th:each="st : ${students}">
+		<td th:text="${st.id}"></td>
+		<td th:text="${st.name}"></td>
+		<td th:text="${st.grade}"></td>
+		<td th:text="${st.letterGrade}"></td>
+		<td><a th:href="@{/edit/{id}(id=${st.id})}">EDIT</a></td>
+		<td><a th:href="@{/delete/{id}(id=${st.id})}">DELETE</a></td>
+	<tr>
+</table>
+
+</body>
+</html>
